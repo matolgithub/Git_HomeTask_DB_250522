@@ -178,6 +178,15 @@ INSERT INTO track_list(track_name, track_time, album_id)
 INSERT INTO track_list(track_name, track_time, album_id)
 	VALUES('This morning', 250, 11);
 
+INSERT INTO track_list(track_name, track_time, album_id)
+	VALUES('This time', 220, 1);
+
+INSERT INTO track_list(track_name, track_time, album_id)
+	VALUES('Summer', 180, 1);
+
+INSERT INTO track_list(track_name, track_time, album_id)
+	VALUES('Say good by', 200, 1);
+
 INSERT INTO collection(collection_name, collection_year)
 	VALUES('Best collection number 1', 2018);
 
