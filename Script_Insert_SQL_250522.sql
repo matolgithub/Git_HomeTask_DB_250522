@@ -140,6 +140,9 @@ INSERT INTO track_list(track_name, track_time, album_id)
 	VALUES('30 seconds', 120, 7);
 
 INSERT INTO track_list(track_name, track_time, album_id)
+	VALUES('Dream', 120, 4);
+
+INSERT INTO track_list(track_name, track_time, album_id)
 	VALUES('Bravo maestro', 180, 6);
 
 INSERT INTO track_list(track_name, track_time, album_id)
