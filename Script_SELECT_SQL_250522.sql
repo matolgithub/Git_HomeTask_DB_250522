@@ -31,3 +31,8 @@ SELECT album_name FROM album_list al
 	GROUP BY album_name 
 	HAVING COUNT(style_id) > 1
 	ORDER BY album_name;
+	
+SELECT track_name FROM track_list tl 
+	LEFT JOIN collection_track ct ON tl.id = ct.track_id 
+	WHERE ct.track_id IS NULL 
+	ORDER BY track_name;
