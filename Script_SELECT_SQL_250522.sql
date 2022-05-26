@@ -14,6 +14,15 @@ SELECT singer_id FROM singer_album sa
 	JOIN album_list al ON sa.album_id = al.id 
 	WHERE al.release_year != 2020;
 
+SELECT collection_name FROM collection c 
+	JOIN collection_track ct ON c.id = ct.collection_id 
+	JOIN track_list tl ON ct.track_id = tl.id 
+	JOIN album_list al ON tl.album_id = al.id 
+	JOIN singer_album sa ON al.id = sa.album_id 
+	JOIN singer_list sl ON sa.singer_id = sl.id 
+	WHERE sl.singer_name = 'Trololo'
+	ORDER BY collection_name; 
+
 SELECT album_name FROM album_list al 
 	JOIN singer_album sa ON al.id = sa.album_id 
 	JOIN singer_list sl ON sa.singer_id = sl.id
