@@ -9,3 +9,16 @@ SELECT COUNT(album_id) FROM track_list t
 SELECT album_id, AVG(track_time) FROM track_list 
 	GROUP BY album_id
 	ORDER BY album_id;
+
+SELECT singer_id FROM singer_album sa 
+	JOIN album_list al ON sa.album_id = al.id 
+	WHERE al.release_year != 2020;
+
+SELECT album_name FROM album_list al 
+	JOIN singer_album sa ON al.id = sa.album_id 
+	JOIN singer_list sl ON sa.singer_id = sl.id
+	JOIN style_singer ss ON sl.id = ss.singer_id 
+	JOIN style_list sl2 ON ss.style_id = sl2.id
+	GROUP BY album_name 
+	HAVING COUNT(style_id) > 1
+	ORDER BY album_name;
