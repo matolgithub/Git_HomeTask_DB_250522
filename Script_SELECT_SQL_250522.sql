@@ -41,4 +41,14 @@ SELECT sl.singer_name, track_name, track_time FROM track_list tl
 	JOIN album_list al ON tl.album_id = al.id 
 	JOIN singer_album sa ON al.id = sa.album_id 
 	JOIN singer_list sl ON sa.singer_id = sl.id 
-	WHERE track_time = (SELECT MIN(track_time) FROM track_list);
+	WHERE track_time = (SELECT MIN(track_time) FROM track_list);	
+	
+ SELECT al.album_name, COUNT(tl.id) FROM album_list al
+    JOIN track_list tl ON al.id = tl.album_id
+    GROUP BY al.album_name 
+    HAVING COUNT(tl.id) IN (
+   	SELECT COUNT(tl.id) FROM album_list al
+    JOIN track_list tl ON al.id = tl.album_id
+    GROUP BY al.album_name 
+    ORDER BY COUNT(tl.id)
+    LIMIT 1);
