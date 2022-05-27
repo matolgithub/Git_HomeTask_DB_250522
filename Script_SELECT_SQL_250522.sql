@@ -3,18 +3,19 @@ SELECT sl.style_name, COUNT(ss.singer_id) FROM style_singer ss
 	GROUP BY sl.style_name  
 	ORDER BY sl.style_name;
 	
-SELECT COUNT(album_id) FROM track_list t 
+SELECT COUNT(t.id) FROM track_list t 
 	JOIN album_list a ON t.album_id = a.id
 	WHERE a.release_year BETWEEN 2019 AND 2020; 
-
-SELECT album_id, AVG(track_time) FROM track_list 
+	
+SELECT album_id, round(AVG(track_time), 2) FROM track_list 
 	GROUP BY album_id
 	ORDER BY album_id;
-
-SELECT singer_id FROM singer_album sa 
+	
+SELECT sa.singer_id,  sl.singer_name FROM singer_album sa 
 	JOIN album_list al ON sa.album_id = al.id 
+	JOIN singer_list sl ON sa.singer_id = sl.id 
 	WHERE al.release_year != 2020;
-
+	
 SELECT collection_name FROM collection c 
 	JOIN collection_track ct ON c.id = ct.collection_id 
 	JOIN track_list tl ON ct.track_id = tl.id 
@@ -23,7 +24,7 @@ SELECT collection_name FROM collection c
 	JOIN singer_list sl ON sa.singer_id = sl.id 
 	WHERE sl.singer_name = 'Trololo'
 	ORDER BY collection_name; 
-
+	
 SELECT album_name FROM album_list al 
 	JOIN singer_album sa ON al.id = sa.album_id 
 	JOIN singer_list sl ON sa.singer_id = sl.id
@@ -48,8 +49,9 @@ SELECT sl.singer_name, track_name, track_time FROM track_list tl
     JOIN track_list tl ON al.id = tl.album_id
     GROUP BY al.album_name 
     HAVING COUNT(tl.id) IN (
-   	SELECT COUNT(tl.id) FROM album_list al
+    SELECT COUNT(tl.id) FROM album_list al
     JOIN track_list tl ON al.id = tl.album_id
     GROUP BY al.album_name 
     ORDER BY COUNT(tl.id)
     LIMIT 1);
+	

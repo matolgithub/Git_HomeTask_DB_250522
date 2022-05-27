@@ -125,19 +125,20 @@ class Sqldb_Musicsite:
     def select_tabdata(self):
         connect = Sqldb_Musicsite.db_connect(Sqldb_Musicsite(data_base='sql_db_250522', user='user_250522'))
         req = ''
-        count_req = 0
+        count_req = 1
         with open('Script_SELECT_SQL_250522.sql', 'r') as file:
             string_list = file.readlines()
         print('*' * 67, 'EXECUTIVE PART', '*' * 67)
-        for index in range(1, len(string_list) + 2):
-            if index % 3 != 0:
-                req += f' {string_list[index - 1].strip()}'
-            else:
-                count_req += 1
-                sel = connect.execute(req.strip()).fetchall()
+        for index in range(len(string_list)):
+            if string_list[index] == '\t\n':
                 print(f"Task №{count_req}. --- {req.strip()}")
-                print(f'The selection result №{count_req} is:\n{sel}', '\n', '*' * 150)
+                sel = connect.execute(req.strip()).fetchall()
+                print(f"The result of Task №{count_req} is: ", '\n', sel, '\n', '--' * 70)
                 req = ''
+                index += 1
+                count_req += 1
+            else:
+                req += f" {string_list[index].strip()}"
         print('Thanks, that is all! Good luck!')
 
 
