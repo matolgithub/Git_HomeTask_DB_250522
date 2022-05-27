@@ -1,6 +1,7 @@
-SELECT style_id, COUNT(singer_id) FROM style_singer 
-	GROUP BY style_id 
-	ORDER BY style_id;
+SELECT sl.style_name, COUNT(ss.singer_id) FROM style_singer ss 
+	JOIN style_list sl ON ss.style_id = sl.id 
+	GROUP BY sl.style_name  
+	ORDER BY sl.style_name;
 	
 SELECT COUNT(album_id) FROM track_list t 
 	JOIN album_list a ON t.album_id = a.id
